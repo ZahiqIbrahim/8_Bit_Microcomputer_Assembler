@@ -26,6 +26,22 @@ public class Assembler {
 
         for (int i = 0; i < instructions.length; i++) {
             instructionsOpCode[i] = "";
+
+            // number check
+            if (instructions[i].matches("\\d+")) {
+
+                int number = Integer.parseInt(instructions[i]);
+                if (number > 255) {
+                    throw new RuntimeException("stored value must not exceed 255");
+                }
+
+                //binary conversion
+                instructionsOpCode[i] = String.format("%8s",
+                                Integer.toBinaryString(number))
+                        .replace(' ', '0');
+                continue;
+            }
+
             String ins = instructions[i].substring(0,3);
             instructionsOpCode[i] += codeLookUp.getOpcode(ins);
 

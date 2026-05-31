@@ -30,7 +30,9 @@ public class CodeLookUp {
                 return "11110000";
 
             default:
-                throw new RuntimeException("Invalid Instruction");
+                    throw new RuntimeException("Invalid Instruction");
+
+
         }
     }
 
