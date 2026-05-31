@@ -2,6 +2,7 @@ package com.example.__Bit_Microcontrolller_Assembler.controller;
 
 
 import com.example.__Bit_Microcontrolller_Assembler.service.Assembler;
+import com.example.__Bit_Microcontrolller_Assembler.service.SerialPortCom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,11 +16,13 @@ public class ProgramController {
 
     @Autowired
     private Assembler assembler;
+    @Autowired
+    private SerialPortCom serialPortCom;
 
     @PostMapping("/new-program")
     public ResponseEntity<?> addProgram(@RequestBody String program){
         try {
-            assembler.convertProgram(program);
+            serialPortCom.sendInstructions(assembler.convertProgram(program));
             return ResponseEntity.ok("Program Sent Successful");
         }catch (Exception e){
             return ResponseEntity.badRequest().body(Map.of("Error ", e.getMessage()));

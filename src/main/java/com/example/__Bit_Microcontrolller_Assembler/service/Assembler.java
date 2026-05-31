@@ -8,8 +8,10 @@ public class Assembler {
 
     @Autowired
     private CodeLookUp codeLookUp;
+    @Autowired
+    private InstructionFormatter instructionFormatter;
 
-    public void convertProgram(String program){
+    public String convertProgram(String program){
 
         String[] instructions = program.split("\\R");
 
@@ -53,6 +55,6 @@ public class Assembler {
             System.out.println(ins);
         }
 
-
+       return instructionFormatter.formatInstruction(instructionsOpCode);
     }
 }

@@ -9,7 +9,7 @@ import java.io.OutputStream;
 @Service
 public class SerialPortCom {
 
-    public void sendInstructions(String instruction) throws IOException {
+    public void sendInstructions(String instructions) throws IOException {
         SerialPort port = SerialPort.getCommPort("COM3");
         port.setBaudRate(115200);
         boolean opened = port.openPort();
@@ -33,9 +33,10 @@ public class SerialPortCom {
             throw new RuntimeException("Failed to open port");
         }
 
-        out.write("00001111111,111110101010\n".getBytes());
+        //"00001111111,111110101010\n"
+        out.write(instructions.getBytes());
         out.flush();
-
+        port.closePort();
 
     }
 }
