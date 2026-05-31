@@ -19,7 +19,7 @@ public class Assembler {
 
         String[] instructionsOpCode = new String[16];
         if(instructions.length > 16){
-            throw new RuntimeException("Memory Capacity Exceeded - Memory is of 16 bytes");
+            throw new RuntimeException("Memory Capacity Exceeded - Memory is of 16 byte");
         }
 
         for (int i = 0; i < instructions.length; i++) {
