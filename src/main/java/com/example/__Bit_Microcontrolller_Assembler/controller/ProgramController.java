@@ -23,7 +23,7 @@ public class ProgramController {
     public ResponseEntity<?> addProgram(@RequestBody String program){
         try {
             serialPortCom.sendInstructions(assembler.convertProgram(program));
-            return ResponseEntity.ok("Program Sent Successful");
+            return ResponseEntity.ok("Program uploaded successfully.");
         }catch (Exception e){
             return ResponseEntity.badRequest().body(Map.of("Error ", e.getMessage()));
         }
